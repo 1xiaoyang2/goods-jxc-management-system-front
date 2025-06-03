@@ -173,12 +173,18 @@ export default {
 		updateRole(formName) {
 			this.$refs[formName].validate((valid) => {
 				if (valid) {
+          // 校验 marketPrice 是否为数字
+          if (isNaN(this.dataDialogForm.marketPrice)) {
+            this.$message.error("请输入有效的数字作为市场价");
+            this.dialogFormSubmitVisible = false;
+            return;
+          }
 					if (this.dialogFormSubmitVisible) {
 						return;
 					}
 					this.dialogFormSubmitVisible = true;
 
-					this.$http.post("/shop/add", this.dataDialogForm)
+					this.$http.post("/shop/addOrUpdate", this.dataDialogForm)
 						.then((res) => {
 							// console.log("添加/修改", res);
 							this.dialogFormVisible = false; // 关闭窗口
@@ -302,7 +308,6 @@ export default {
 		}
 	},
 	mounted() {
-
 		this.getDataList();
 	},
 };

@@ -13,7 +13,7 @@
         </el-form>
 
         <el-table ref="multipleTable" :data="dataList" style="width: 100%">
-          <el-table-column type="selection" width="55"> </el-table-column>
+          <el-table-column type="selection" width="55"></el-table-column>
           <el-table-column prop="id" label="ID" width="60">
           </el-table-column>
           <el-table-column prop="dept" label="部门" width="60">
@@ -47,27 +47,30 @@
             <template slot-scope="scope" width="120">
               <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
               <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-              <el-button size="mini" type="primary" @click="passwordInit(scope.$index, scope.row)">密码初始化</el-button>
-              <el-button size="mini" type="primary" @click="handleAdminMenu(scope.$index, scope.row)">用户分配</el-button>
+              <el-button size="mini" type="primary" @click="passwordInit(scope.$index, scope.row)">密码初始化
+              </el-button>
+              <el-button size="mini" type="primary" @click="handleAdminMenu(scope.$index, scope.row)">用户分配
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
 
-        <el-pagination  @size-change="sizeChangeHandle" @current-change="currentChangeHandle" :current-page="pageIndex"
-          :page-sizes="[5, 7, 10]" :page-size="pageSize" :total="totalPage"
-          layout="total, sizes, prev, pager, next, jumper" style="margin-top: 30px">
+        <el-pagination @size-change="sizeChangeHandle" @current-change="currentChangeHandle" :current-page="pageIndex"
+                       :page-sizes="[5, 7, 10]" :page-size="pageSize" :total="totalPage"
+                       layout="total, sizes, prev, pager, next, jumper" style="margin-top: 30px">
         </el-pagination>
       </div>
 
 
       <!-- Form -->
-      <el-dialog :title="dataDialogForm.id === 0 ? '新增用户' : '更新用户'" width="35%" :visible.sync="dialogFormVisible"
-        @close="closeDialog()">
+      <el-dialog :title="dataDialogForm.id === 0 ? '新增用户' : '更新用户'" width="35%"
+                 :visible.sync="dialogFormVisible"
+                 @close="closeDialog()">
         <el-form :model="dataDialogForm" status-icon :rules="rules" ref="adminForm">
 
           <el-form-item label="用户名" label-width="120px" prop="userName">
             <el-input v-model="dataDialogForm.userName" placeholder="请设置系统登陆用户名" autocomplete="off"
-              style="width: 300px"></el-input>
+                      style="width: 300px"></el-input>
           </el-form-item>
 
           <el-form-item label="真实姓名" label-width="120px" prop="trueName">
@@ -78,7 +81,7 @@
             <template>
               <el-select style="width: 300px;" v-model="dataDialogForm.dept" placeholder="请选择">
                 <el-option v-for="item in deptAll" :key="item.id" :label="'[' + item.id + '] ' + item.deptName"
-                  :value="item.id">
+                           :value="item.id">
                 </el-option>
               </el-select>
             </template>
@@ -88,13 +91,13 @@
             <template>
               <el-select style="width: 300px;" v-model="dataDialogForm.sex" placeholder="请选择">
                 <el-option v-for="item in sexTwo" :key="item.id" :label="'[' + item.id + '] ' + item.name"
-                  :value="item.id">
+                           :value="item.id">
                 </el-option>
               </el-select>
             </template>
           </el-form-item>
 
-          <el-form-item label="邮箱" label-width="120px" prop="eMail"  >
+          <el-form-item label="邮箱" label-width="120px" prop="eMail">
             <el-input v-model="dataDialogForm.eMail" placeholder="邮箱格式 xxx@qq.com" style="width: 300px"></el-input>
           </el-form-item>
 
@@ -104,7 +107,8 @@
 
           <el-form-item label="状态" label-width="120px" prop="status">
             <template> <!-- label是显示的东西  value是对应选中的值 -->
-              <el-select style="width: 300px;" v-model="dataDialogForm.status" placeholder="默认禁用。创建用户后,请更新状态为正常！">
+              <el-select style="width: 300px;" v-model="dataDialogForm.status"
+                         placeholder="默认禁用。创建用户后,请更新状态为正常！">
                 <el-option v-for="item in statusTwo" :key="item.id" :label="item.name" :value="item.id">
                 </el-option>
               </el-select>
@@ -124,7 +128,7 @@
       <!-- 角色分配 -->
       <el-dialog title="用户分配角色" width="35%" :visible.sync="dialogAdminToRoleFormVisible">
         <el-tree style="padding-left:45px;" :data="userRolesTree.RoleTree" show-checkbox node-key="id" ref="treeRole"
-          @check="handleChecked" :default-checked-keys="userRolesTree.defaultRoleIds" :props="defaultProps">
+                 @check="handleChecked" :default-checked-keys="userRolesTree.defaultRoleIds" :props="defaultProps">
         </el-tree>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogAdminToRoleFormVisible = false">取 消</el-button>
@@ -182,8 +186,9 @@ export default {
       setTimeout(() => {
         if (!Number.isInteger(value) && value.length != 11) {
           callback(new Error('请输入数字且必须为11位!'));
+        } else {
+          callback();
         }
-        else { callback(); }
       }, 1000);
     };
 
@@ -198,11 +203,11 @@ export default {
       deptAll: [],
       //性别
       sexTwo: [
-        { id: 0, name: '男' }, { id: 1, name: '女' }
+        {id: 0, name: '男'}, {id: 1, name: '女'}
       ],
       //状态
       statusTwo: [
-        { id: 0, name: '正常' }, { id: 1, name: '禁用' }
+        {id: 0, name: '正常'}, {id: 1, name: '禁用'}
       ],
 
 
@@ -238,19 +243,19 @@ export default {
       // 用户校验---------前端提示
       rules: {
         userName: [
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' },   //长度
-          { pattern: /[A-Za-z_\-\u4e00-\u9fa5]+/, message: '姓名不支持特殊字符', trigger: 'blur' },  //正则
-          { validator: checkUserName, trigger: 'blur' },
+          {required: true, message: '请输入用户名', trigger: 'blur'},
+          {min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur'},   //长度
+          {pattern: /[A-Za-z_\-\u4e00-\u9fa5]+/, message: '姓名不支持特殊字符', trigger: 'blur'},  //正则
+          {validator: checkUserName, trigger: 'blur'},
         ],
-        phone: [{ required: true, validator: checkPhone, trigger: 'blur' },],
+        phone: [{required: true, validator: checkPhone, trigger: 'blur'},],
 
         // eMail: [{ required: true, message: '请输入邮箱地址', trigger: 'blur' },
         // { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }],
 
-        trueName: [{ required: true, message: '请输入真实姓名', trigger: 'blur' }],
+        trueName: [{required: true, message: '请输入真实姓名', trigger: 'blur'}],
 
-        dept: [{ required: true, message: '请选择部门', trigger: 'blur' }]
+        dept: [{required: true, message: '请选择部门', trigger: 'blur'}]
       },
 
     }
@@ -396,7 +401,7 @@ export default {
                 });
               }
               this.dialogFormSubmitVisible = false;
-              this.pageIndex =1;
+              this.pageIndex = 1;
               this.getDataList(); // 刷新数据
             });
         })
@@ -411,7 +416,7 @@ export default {
     //树形选中的数据
     handleChecked() {
       // console.log("---树形选中的数据------", currentNode, selectedNodes);
-       console.log("getCheckedKeys",this.$refs.treeRole.getCheckedKeys());
+      console.log("getCheckedKeys", this.$refs.treeRole.getCheckedKeys());
       this.userRolesTree.defaultRoleIds = this.$refs.treeRole.getCheckedKeys();
       // console.log(this.userRolesTree.defaultRoleIds)
     },
@@ -428,8 +433,8 @@ export default {
 
     //获取用户具有的角色
     getRoleIdListByuserId() {
-    console.log("用户id",this.userId)
-      this.$http.get("/admin/getRoleIdListByUserId?userId="+this.userId )
+      console.log("用户id", this.userId)
+      this.$http.get("/admin/getRoleIdListByUserId?userId=" + this.userId)
         .then((res) => {
           // console.log("用户对应角色",res.data);
 
@@ -452,13 +457,13 @@ export default {
     //   this.dialogAdminToRoleFormVisible = true;
     // },
 
-        //获取角色树 & 已有角色
-        handleAdminMenu(index, item) {
+    //获取角色树 & 已有角色
+    handleAdminMenu(index, item) {
       if (this.dialogAdminToRoleFormVisible) {
         return;
       }
       this.userId = item.id;
-       this.listTreeRole();  //获取角色树
+      this.listTreeRole();  //获取角色树
       this.getRoleIdListByuserId()  //已有角色id List
       this.dialogAdminToRoleFormVisible = true;
     },
@@ -490,7 +495,7 @@ export default {
 
     getDeptAll() {    //获取所有部门
       this.$http.get("/jcDept/listAll").then((res) => {
-          console.log("部门", res);
+        console.log("部门", res);
         this.deptAll = res.data.data;
       })
     },
@@ -535,7 +540,7 @@ export default {
         }
       };
       //后端请求 分页获取对象
-      this.$http.get("/admin/List", params).then((res) => {
+      this.$http.get("/admin/list", params).then((res) => {
         // console.log("提交的参数", params);
         // console.log(res);
         //需要通过响应的结果配置

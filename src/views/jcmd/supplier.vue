@@ -160,7 +160,7 @@ export default {
 					}
 					this.dialogFormSubmitVisible = true;
 
-					this.$http.post("/supplier/add", this.dataDialogForm)
+					this.$http.post("/supplier/addOrUpdate", this.dataDialogForm)
 						.then((res) => {
 							// console.log("添加/更新", res);
 							this.dialogFormVisible = false; // 关闭窗口

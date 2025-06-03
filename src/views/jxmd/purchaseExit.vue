@@ -220,7 +220,7 @@ export default {
           this.dialogFormSubmitVisible = true;
 
           //add调用---> saveOrUpdateRole 通过id(前端传的)判断是增加还是修改
-          this.$http.post("/purchaseExit/add", this.dataDialogForm)
+          this.$http.post("/purchaseExit/addOrUpdate", this.dataDialogForm)
             .then((res) => {
               // console.log("添加/更新", res);
               this.dialogFormVisible = false; // 关闭窗口
@@ -228,7 +228,6 @@ export default {
               this.dataDialogForm = {
                 id: 0,
                 number: "",
-                exitNumber: "",
                 exitNumber: "",
                 num: "",
                 price: "",

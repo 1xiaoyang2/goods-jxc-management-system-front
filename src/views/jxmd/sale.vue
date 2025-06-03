@@ -4,7 +4,7 @@
       <div>
         <el-form :inline="true" :model="dataform" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataform.select" placeholder="请输入采购单号" clearable @clear='getDataList'></el-input>
+            <el-input v-model="dataform.select" placeholder="请输入销售人姓名" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" icon="el-icon-search" @click="getDataList">查询</el-button>
@@ -364,7 +364,7 @@ export default {
           this.dialogFormSubmitVisible = true;
 
           //add调用---> saveOrUpdateRole 通过id(前端传的)判断是增加还是修改
-          this.$http.post("/sale/add", this.dataDialogForm)
+          this.$http.post("/sale/addOrUpdate", this.dataDialogForm)
             .then((res) => {
               // console.log("添加/更新", res);
               this.dialogFormVisible = false; // 关闭窗口
