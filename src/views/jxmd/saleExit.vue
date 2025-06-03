@@ -5,7 +5,7 @@
       <div>
         <el-form :inline="true" :model="dataform" class="demo-form-inline">
           <el-form-item label="销售单号">
-            <el-input v-model="dataform.select" placeholder="请输入销售单号" clearable></el-input>
+            <el-input v-model="dataform.select" placeholder="请输入销售单号" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" icon="el-icon-search" @click="getDataList">查询</el-button>
@@ -80,7 +80,7 @@
             <el-input v-model="dataDialogForm.price" placeholder="退销单价" style="width: 300px"></el-input>
           </el-form-item>
           <el-form-item label="状态" label-width="120px" prop="status">
-            <template> 
+            <template>
               <el-select clearable style="width: 300px;" v-model="dataDialogForm.status" placeholder="请选择">
                 <el-option v-for="item in statusTwo" :key="item.id" :label="'['+item.id+'] '+item.name" :value="item.id">
                 </el-option>
@@ -115,7 +115,7 @@ export default {
       dataform: {
         select: "",
       },
-      dataList: [], //数据列表   
+      dataList: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -211,7 +211,7 @@ export default {
       this.update(formName);
     },
 
-    //更新 
+    //更新
     update(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -304,7 +304,7 @@ export default {
           return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
         };
       },
-      
+
       getSaleOrder() {
          this.$http.get("/sale/getNumberAndCustomer").then((res)=>{
                 // console.log("name-address",res)
@@ -314,7 +314,7 @@ export default {
       handleSelect(item) {
         // console.log("item",item);
       },
-  
+
 
 
 
@@ -356,5 +356,4 @@ export default {
 }
 </script>
 <style></style>
-  
-  
+

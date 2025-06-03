@@ -4,14 +4,14 @@
       <div>
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item label="出库编号">
-            <el-input v-model="dataForm.select" placeholder="请输入出库编号" clearable></el-input>
+            <el-input v-model="dataForm.select" placeholder="请输入出库编号" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" @click="getDataList">查询</el-button>
             <el-button type="primary" @click="openDialog()">新增</el-button>
           </el-form-item>
         </el-form>
- 
+
         <el-table ref="multipleTable" :data="dataList" tooltip-effect="dark" style="width: 100%">
           <el-table-column type="selection" width="55">
           </el-table-column>
@@ -66,7 +66,7 @@
         </el-pagination>
       </div>
 
-      
+
       <!-- Form -->
       <el-dialog :title="dataDialogForm.id === 0 ? '新增入库' : '更新入库'" width="35%" :visible.sync="dialogFormVisible"
         @close="closeDialog()">
@@ -97,12 +97,12 @@
           <el-form-item label="出库数量" label-width="120px" prop="shopNumber">
             <el-input v-model="dataDialogForm.shopNumber" placeholder="入库数量" style="width: 300px"></el-input>
           </el-form-item>
- 
+
           <el-form-item label="规格" label-width="120px" prop="specs">
-            <template>  
+            <template>
               <el-select style="width: 300px;" v-model="dataDialogForm.specs" placeholder="请选择">
-                <el-option v-for="item in specsList" 
-                :key="item.id" 
+                <el-option v-for="item in specsList"
+                :key="item.id"
                 :label="'[' + item.id + '] ' + item.name"
                   :value="item.name">
                 </el-option>
@@ -163,7 +163,7 @@ export default {
       dataForm: {
         select: "",
       },
-      dataList: [], //数据列表   
+      dataList: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -204,7 +204,7 @@ export default {
       this.getDataList()
     },
 
-    // 新增窗口   
+    // 新增窗口
     openDialog() {
       this.dialogFormVisible = true;
       this.dataDialogForm.id = 0;
@@ -256,7 +256,7 @@ export default {
       this.update(formName);
     },
 
-    //更新 
+    //更新
     update(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -375,7 +375,7 @@ export default {
           this.$message({
             type: 'info',
             message: '已取消'
-          });          
+          });
         });
     },
 
@@ -434,7 +434,6 @@ export default {
 }
 </script>
 <style></style>
-  
-  
-    
-          
+
+
+

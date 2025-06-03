@@ -4,7 +4,7 @@
       <div>
         <el-form :inline="true" :model="dataForm" >
           <el-form-item label="角色名称">
-            <el-input v-model="dataForm.select" placeholder="请输入角色名称" clearable></el-input>
+            <el-input v-model="dataForm.select" placeholder="请输入角色名称" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" @click='getDataList'>查询</el-button>
@@ -20,7 +20,7 @@
           </el-table-column>
           <el-table-column prop="description" label="描述" width="100" show-overflow-tooltip>
           </el-table-column>
- 
+
           <el-table-column prop="status" label="状态" width="80">
             <template slot-scope="scope">
               <span>{{ scope.row.status == 0 ? '正常' : '停用' }}</span>
@@ -69,7 +69,7 @@
           </el-form-item>
 
           <el-form-item label="状态" label-width="120px" prop="status">
-            <template> 
+            <template>
               <el-select v-model="dataDialogForm.status" placeholder="请选择">
                 <el-option v-for="item in statusTwo" :key="item.id" :label="item.name" :value="item.id">
                 </el-option>
@@ -103,7 +103,7 @@
     </el-card>
   </div>
 </template>
- 
+
 
 <script>
 
@@ -145,7 +145,7 @@ export default {
       ],
 
       dataForm: { select: "", },
-      dataList: [],         //数据列表   
+      dataList: [],         //数据列表
       pageIndex: 1,         //初始页
       pageSize: 5,          //每页条数
       totalPage: 0,         //总条数
@@ -250,9 +250,9 @@ export default {
                   type: "success",
                   message: "删除成功!",
                 });
-              }        
-              this.dialogFormSubmitVisible = false;      
-                 this.pageIndex =1;   //未在第一页删除数据导致请求的是当前页      
+              }
+              this.dialogFormSubmitVisible = false;
+                 this.pageIndex =1;   //未在第一页删除数据导致请求的是当前页
                 this.getDataList();   // 刷新数据
             });
 
@@ -276,13 +276,13 @@ export default {
       // console.log(this.dataDialogForm);
     },
 
- 
+
         //获取完整菜单树  getShowMenu  listTreeMenu
         listTreeMenu() {
       this.$http.get("/menu/listTreeMenu")
         .then((res) => {
           console.log("菜单树",res.data);
- 
+
           this.roleMenusTree.MenuTree = res.data.data;
         })
     },
@@ -291,7 +291,7 @@ export default {
       this.$http.get("/role/getMenuIdListByRoleId?roleId="+this.roleId )
         .then((res) => {
           console.log("角色对应菜单id",res.data);
- 
+
           this.roleMenusTree.defaultMenuIds = res.data.data;
         })
     },
@@ -301,12 +301,12 @@ export default {
        if (this.dialogRoleFormVisible) {
          return;
        }
-       this.roleId = item.roleId;   
+       this.roleId = item.roleId;
        this.listTreeMenu(); //获取菜单树
        this.getMenuIdListByRoleId(); //已有菜单id list
         this.dialogRoleFormVisible = true;
     },
- 
+
     //树形选中的数据 currentNode, selectedNodes
     handleChecked() {
       // console.log(currentNode, selectedNodes);
@@ -394,6 +394,5 @@ export default {
 }
 </script>
 <style></style>
-  
-  
-  
+
+

@@ -5,7 +5,7 @@
       <div>
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataForm.select" placeholder="请输入商品名称" clearable></el-input>
+            <el-input v-model="dataForm.select" placeholder="请输入商品名称" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button @click='getDataList'>查询</el-button>
@@ -67,7 +67,7 @@
               </el-select>
             </template>
           </el-form-item>
-          
+
           <el-form-item label="所属类" label-width="120px" prop="parentId">
              <template>
               <el-select style="width: 300px;" v-model="dataDialogForm.shopType" placeholder="请选择">
@@ -84,7 +84,7 @@
           <el-form-item label="计量单位" label-width="120px" prop="speces">
             <el-input v-model="dataDialogForm.speces" placeholder="计量单位" style="width: 300px"></el-input>
           </el-form-item>
- 
+
           <el-form-item label="存入仓库" label-width="120px" prop="depository">
             <template>
                <el-select style="width: 300px;" v-model="dataDialogForm.depository" placeholder="请选择">
@@ -94,7 +94,7 @@
               </el-select>
             </template>
           </el-form-item>
- 
+
           <el-form-item label="备注" label-width="120px" prop="remark">
             <el-input type="textarea" v-model="dataDialogForm.remark" style="width: 300px"></el-input>
           </el-form-item>
@@ -120,7 +120,7 @@ export default {
       addressData:{         	//存储地址数据
         areaCodes:"",
         addressName:""
-      },		
+      },
 
 
       DepositoryAll: [],
@@ -130,7 +130,7 @@ export default {
       dataForm: {
         select: "",
       },
-      dataList: [], //数据列表   
+      dataList: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -185,13 +185,13 @@ export default {
         var name = ''
         //name =CodeToText[code]
         this.areaCodes.map(item => name += CodeToText[item] + '/')  //由code集合遍历 寻找对应的地址名称 存为name
-        this.dataDialogForm.address =name;  
+        this.dataDialogForm.address =name;
         this.addressData.addressName = name
         // console.log("地址:",this.addressData.name)
         // console.log("选择的全部信息:",this.addressData)
       //  this.addtions.name = ''
       },
- 
+
     //编辑
     handleEdit(index, item) {
       this.dialogFormVisible = true;   // 打开更新的窗口
@@ -205,7 +205,7 @@ export default {
       // this.dataDialogForm.depository = item.depository;
       // this.addressData.addressName =item.address;
       // this.dataDialogForm.remark = item.remark;
-      
+
     },
     //编辑完成后-->确定提交  ruleFrom -->  formName
     handleSubmitFormData(formName) {
@@ -224,7 +224,7 @@ export default {
               // console.log("添加/更新", res);
               this.dialogFormVisible = false; // 关闭窗口
            //   this.addressData="",
-              this.areaCodes="", 
+              this.areaCodes="",
               // 清空添加数据的表单
               this.dataDialogForm = {
                 id: 0,
@@ -380,6 +380,5 @@ export default {
 }
 </script>
 <style></style>
-  
-  
-  
+
+

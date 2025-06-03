@@ -4,7 +4,7 @@
 		<div class="mod-role">
 			<el-form :inline="true" :model="dataForm" class="demo-form-inline">
 				<el-form-item>
-					<el-input v-model="dataForm.shop" clearable placeholder="请输入商品名"></el-input>
+					<el-input v-model="dataForm.shop" clearable placeholder="请输入商品名" @clear='getDataList'></el-input>
 				</el-form-item>
 				<el-form-item>
 					<el-button @click='getDataList'>查询</el-button>
@@ -56,7 +56,7 @@
 				<el-form-item label="商品名称" label-width="120px" prop="name">
 					<el-input v-model="dataDialogForm.name" placeholder="商品名称" style="width: 300px"></el-input>
 				</el-form-item>
- 
+
 				<el-form-item label="所属类" label-width="120px" prop="parentId">
  					<template>
 						<el-select style="width: 300px;" v-model="dataDialogForm.parentId" placeholder="请选择">
@@ -67,7 +67,7 @@
 					</template>
 				</el-form-item>
 				<el-form-item label="规格" label-width="120px" prop="specs">
-            <template>  
+            <template>
               <el-select style=" width: 300px;" v-model="dataDialogForm.specs" placeholder="请选择">
                 <el-option v-for="item in specsList" :key="item.id" :label="'[' + item.id + '] ' + item.name"
                   :value="item.name">
@@ -164,7 +164,7 @@ export default {
 			// this.dataDialogForm.buildDate = item.buildDate;
 			// this.dataDialogForm.updateDate = item.updateDate;
 			this.dataDialogForm.remark = item.remark;
-		 
+
 		},
 		//编辑完成后-->确定提交  ruleFrom -->  formName
 		handleSubmitFormData(formName) {
@@ -276,7 +276,7 @@ export default {
 		},
 
 
-		//-------------------------------------------	
+		//-------------------------------------------
 		getDataList() {
 
 			this.getShopTypeList();

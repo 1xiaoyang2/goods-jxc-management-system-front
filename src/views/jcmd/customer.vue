@@ -5,7 +5,7 @@
       <div>
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataForm.selectcustomer" placeholder="客户姓名" clearable></el-input>
+            <el-input v-model="dataForm.selectcustomer" placeholder="客户姓名" clearable @clear='getDataList' ></el-input>
           </el-form-item>
           <el-form-item>
             <el-button @click='getDataList'>查询</el-button>

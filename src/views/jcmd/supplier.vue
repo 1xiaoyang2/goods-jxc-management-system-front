@@ -5,7 +5,7 @@
 			<div class="mod-role">
 				<el-form :inline="true" :model="dataForm" class="demo-form-inline">
 					<el-form-item>
-						<el-input v-model="dataForm.supplier" clearable placeholder="请输入供应商名称"></el-input>
+						<el-input v-model="dataForm.supplier" clearable placeholder="请输入供应商名称" @clear='getDataList'></el-input>
 					</el-form-item>
 					<el-form-item>
 						<el-button @click='getDataList'>查询</el-button>
@@ -225,7 +225,7 @@ export default {
 		openDialog() {
 			// 打开窗口
 			this.dialogFormVisible = true;
-			this.dataDialogForm.id = 0;  //用于后端判断是否为更新 
+			this.dataDialogForm.id = 0;  //用于后端判断是否为更新
 			this.dataDialogForm.supplierName = "";
 			this.dataDialogForm.head = "",
 				this.dataDialogForm.phone = "";
@@ -255,7 +255,7 @@ export default {
 
 
 
-		//----------------------		
+		//----------------------
 		getDataList() {
 			if (this.dataListLoading) {
 				return;

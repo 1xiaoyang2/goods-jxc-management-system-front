@@ -4,7 +4,7 @@
       <div class="mod-admin">
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataForm.select" clearable placeholder="请输入用户名"></el-input>
+            <el-input v-model="dataForm.select" clearable placeholder="请输入用户名" @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" icon="el-icon-search" @click="getDataList">查询</el-button>
@@ -52,7 +52,7 @@
             </template>
           </el-table-column>
         </el-table>
-        
+
         <el-pagination  @size-change="sizeChangeHandle" @current-change="currentChangeHandle" :current-page="pageIndex"
           :page-sizes="[5, 7, 10]" :page-size="pageSize" :total="totalPage"
           layout="total, sizes, prev, pager, next, jumper" style="margin-top: 30px">
@@ -75,7 +75,7 @@
           </el-form-item>
 
           <el-form-item label="部门" label-width="120px" prop="dept">
-            <template> 
+            <template>
               <el-select style="width: 300px;" v-model="dataDialogForm.dept" placeholder="请选择">
                 <el-option v-for="item in deptAll" :key="item.id" :label="'[' + item.id + '] ' + item.deptName"
                   :value="item.id">
@@ -151,7 +151,7 @@ export default {
         callback(new Error("请输入用户名"));
       }
       setTimeout(() => {
- 
+
         if (this.checkUserId === 0) {
           // console.log("获取value:", value);
           // 调用后端接口 检查 角色名称是否存在
@@ -189,7 +189,7 @@ export default {
 
     return {
       checkUserId: '',  //点击编辑后存储的id
- 
+
       defaultProps: {
         children: 'children',
         label: 'label'
@@ -209,7 +209,7 @@ export default {
       dataForm: {
         select: "",
       },
-      dataList: [], //数据列表   
+      dataList: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -219,7 +219,7 @@ export default {
       userRolesTree: {
         RoleTree: [],
         defaultRoleIds: [],  //默认已有的角色树
-      },  
+      },
       adminId: 0,                    //用户id
       //编辑弹窗框
       dialogFormVisible: false,   //增加或编辑 dilog
@@ -421,7 +421,7 @@ export default {
       this.$http.get("/role/listTreeRole")
         .then((res) => {
           // console.log("角色树",res.data);
- 
+
           this.userRolesTree.RoleTree = res.data.data;
         })
     },
@@ -432,7 +432,7 @@ export default {
       this.$http.get("/admin/getRoleIdListByUserId?userId="+this.userId )
         .then((res) => {
           // console.log("用户对应角色",res.data);
- 
+
           this.userRolesTree.defaultRoleIds = res.data.data;
         })
     },
@@ -554,6 +554,5 @@ export default {
 }
 </script>
 <style></style>
-  
-  
-  
+
+

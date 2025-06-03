@@ -4,12 +4,12 @@
       <div class="mod-role">
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataForm.select" clearable placeholder="请输入部门名称"></el-input>
+            <el-input v-model="dataForm.select" clearable placeholder="请输入部门名称" @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" @click="getDataList">查询</el-button>
             <el-button type="primary" @click="openDialog()">新增</el-button>
- 
+
           </el-form-item>
         </el-form>
         <el-table :data="dataList" style="width: 100%">
@@ -18,7 +18,7 @@
           </el-table-column>
           <el-table-column prop="deptName" label="部门名称" width="100">
           </el-table-column>
- 
+
           <el-table-column prop="leader" label="负责人" width="80">
           </el-table-column>
           <el-table-column prop="phone" label="电话" width="120">
@@ -60,7 +60,7 @@
           <el-form-item label="部门名称" label-width="120px" prop="deptName">
             <el-input v-model="dataDialogForm.deptName" placeholder="部门名称" style="width: 300px"></el-input>
           </el-form-item>
- 
+
           <el-form-item label="负责人" label-width="120px" prop="leader">
             <el-input v-model="dataDialogForm.leader" placeholder="负责人" style="width: 300px"></el-input>
           </el-form-item>
@@ -69,7 +69,7 @@
           </el-form-item>
 
           <el-form-item label="状态" label-width="120px" prop="status">
-            <template>  
+            <template>
               <el-select v-model="dataDialogForm.status" placeholder="请选择">
                 <el-option v-for="item in statusTwo" :key="item.id" :label="item.name" :value="item.id">
                 </el-option>
@@ -116,7 +116,7 @@ export default {
 
         }
       });
- 
+
     };
     return {
 
@@ -152,7 +152,7 @@ export default {
       // 用户校验---------前端提示
       rules: {
         deptName: [
-        { required: true, message: '请输入部门名', trigger: 'blur' },     
+        { required: true, message: '请输入部门名', trigger: 'blur' },
         { validate: checkDeptName, trigger: "blur" }],
         //--------其他需要用的
       }
@@ -285,7 +285,7 @@ export default {
     },
 
 
-    //---------------------------   
+    //---------------------------
     getDataList() {
       if (this.dataListLoading) {
         return;

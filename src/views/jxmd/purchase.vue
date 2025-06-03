@@ -5,7 +5,7 @@
       <div>
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataForm.select" placeholder="请输入采购人姓名" clearable></el-input>
+            <el-input v-model="dataForm.select" placeholder="请输入采购人姓名" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" icon="el-icon-search" @click="getDataList">查询</el-button>
@@ -174,14 +174,14 @@
        <el-dialog title="退货原因" :visible.sync="dialogExitGoods">
         <el-form label-width="120px">
           <el-form-item label="退货原因" label-width="120px">
-            <el-input type="textarea" placeholder=" " v-model="remark"  style="width: 300px;" ></el-input>    
+            <el-input type="textarea" placeholder=" " v-model="remark"  style="width: 300px;" ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogExitGoods = false">取 消</el-button>
           <el-button type="primary" @click="checkExitGoods(remark)">确 定</el-button>
         </div>
-      </el-dialog>  
+      </el-dialog>
 
     </el-card>
   </div>
@@ -223,7 +223,7 @@ export default {
       ],
 
       //入库选择仓库规则
-      Datalist: [], //数据列表   
+      Datalist: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -327,7 +327,7 @@ export default {
       this.update(formName);
     },
 
-    //更新 
+    //更新
     update(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -451,7 +451,7 @@ export default {
       })
     },
 
-    //入库  确认 
+    //入库  确认
     submitStock() {
       const params = {  //参数转
         params: {
@@ -493,7 +493,7 @@ exitShop(index,item){
   //退货确认按钮
   checkExitGoods(remark){
         this.$http.post("/purchase/checkAndExitGoods?remark=" + remark , this.itemRowExitGoods).then((res) =>{
-            console.log("退货",res)        
+            console.log("退货",res)
             if (res.data.data ==200 ) {
               this.$message({
                   type: "success",
@@ -506,7 +506,7 @@ exitShop(index,item){
                   message: res.data.message
                 });
             }
-  
+
         });
 
     this.dialogExitGoods=false;
@@ -545,7 +545,7 @@ exitShop(index,item){
       })
     },
 
-    
+
 
     //-------------------------------------
     //获取初始化数据
@@ -608,6 +608,5 @@ exitShop(index,item){
   }
 }
 </style>
-  
-  
-  
+
+

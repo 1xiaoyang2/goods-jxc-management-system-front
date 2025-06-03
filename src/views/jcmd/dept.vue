@@ -5,7 +5,7 @@
 			<div class="mod-dept">
 				<el-form :inline="true" :model="selectDept" class="demo-form-inline">
 					<el-form-item>
-						<el-input v-model="selectDept.dept" clearable placeholder="请输入部门名称"></el-input>
+						<el-input v-model="selectDept.dept" clearable placeholder="请输入部门名称" @clear='getDataList'></el-input>
 					</el-form-item>
 					<el-form-item>
 						<el-button type="primary" @click="getDataList">查询</el-button>
@@ -58,14 +58,14 @@
 
 export default {
 	name: "dept",
- 
+
 	data() {
 		return {
- 
+
 			selectDept: {
 				dept: "",
 			},
-			dataList: [], //数据列表   
+			dataList: [], //数据列表
 			pageIndex: 1,   //初始页
 			pageSize: 5,        //每页条数
 			totalPage: 0,         //总条数

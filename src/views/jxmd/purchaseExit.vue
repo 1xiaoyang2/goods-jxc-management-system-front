@@ -4,7 +4,7 @@
       <div>
         <el-form :inline="true" :model="dataForm" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataForm.select" placeholder="请输入采购单号" clearable></el-input>
+            <el-input v-model="dataForm.select" placeholder="请输入采购单号" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" icon="el-icon-search"  @click="getDataList">查询</el-button>
@@ -59,7 +59,7 @@
       <el-dialog :title="dataDialogForm.id === 0 ? '新增采购退货单' : '更新采购退货单'" width="35%" :visible.sync="dialogFormVisible"
         @close="closeDialog()">
         <el-form :model="dataDialogForm" :rules="rules" ref="purchaseExitForm">
- 
+
           <el-form-item label="采购编号" label-width="120px" prop="number">
             <el-autocomplete style="width: 300px;"  popper-class="my-autocomplete" v-model="dataDialogForm.number" :fetch-suggestions="querySearch"
             placeholder="请输入内容" @select="handleSelect">
@@ -78,9 +78,9 @@
           <el-form-item label="退购单价" label-width="120px" prop="price">
             <el-input v-model="dataDialogForm.price" placeholder="退购单价" style="width: 300px"></el-input>
           </el-form-item>
- 
+
           <el-form-item label="状态" label-width="120px" prop="status">
-            <template> 
+            <template>
               <el-select style="width: 300px;" v-model="dataDialogForm.status" placeholder="请选择">
                 <el-option v-for="item in statusTwo" :key="item.id" :label="'['+item.id+']'+item.name" :value="item.id">
                 </el-option>
@@ -111,12 +111,12 @@ export default {
 
       //状态
       statusTwo: [{ id: 0, name: '完成' },
-      { id: 1, name: '进行中' }], 
+      { id: 1, name: '进行中' }],
 
       dataForm: {
         select: "",
       },
-      dataList: [], //数据列表   
+      dataList: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -144,7 +144,7 @@ export default {
       },
     //dialog的供应商自定义搜索
     restaurants: [],
-        
+
     }
   },
   methods: {
@@ -210,7 +210,7 @@ export default {
       this.update(formName);
     },
 
-    //更新 
+    //更新
     update(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -304,7 +304,7 @@ export default {
           return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
         };
       },
-      
+
       loadAll() {
          this.$http.get("/purchase/getNumberAndSupplierName").then((res)=>{
                 // console.log("name-address",res)
@@ -378,6 +378,5 @@ export default {
   }
 }
 </style>
-  
-  
-  
+
+

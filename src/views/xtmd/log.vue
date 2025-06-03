@@ -4,7 +4,7 @@
 			<div class="mod-dept">
 				<el-form :inline="true" :model="selectDept" class="demo-form-inline">
 					<el-form-item>
-						<el-input v-model="selectDept.dept" clearable placeholder="请输入用户名称"></el-input>
+						<el-input v-model="selectDept.name" clearable placeholder="请输入用户名称" @clear='getDataList'></el-input>
 					</el-form-item>
 					<el-form-item>
 						<el-button type="primary" @click="getDataList">查询</el-button>
@@ -46,8 +46,8 @@
 export default {
    data(){
     return{
-        selectDept: { 	name: null },
-			dataList: [], //数据列表   
+      selectDept: {name: null},
+			dataList: [], //数据列表
 			pageIndex: 1,   //初始页
 			pageSize: 5,        //每页条数
 			totalPage: 0,         //总条数
@@ -79,8 +79,9 @@ export default {
 					pageNum: this.pageIndex,
 					keyword: this.selectDept.name
 				}
-
 			};
+
+      console.log(this.selectDept);
 			//后端请求 分页获取对象
 			this.$http.get("log/list", params).then((res) => {
 				// console.log("提交的参数", params);

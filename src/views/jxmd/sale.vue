@@ -4,7 +4,7 @@
       <div>
         <el-form :inline="true" :model="dataform" class="demo-form-inline">
           <el-form-item>
-            <el-input v-model="dataform.select" placeholder="请输入采购单号" clearable></el-input>
+            <el-input v-model="dataform.select" placeholder="请输入采购单号" clearable @clear='getDataList'></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="info" icon="el-icon-search" @click="getDataList">查询</el-button>
@@ -214,7 +214,7 @@ export default {
       dataform: {
         select: "",
       },
-      dataList: [], //数据列表   
+      dataList: [], //数据列表
       pageIndex: 1,   //初始页
       pageSize: 5,        //每页条数
       totalPage: 0,         //总条数
@@ -354,7 +354,7 @@ export default {
       this.update(formName);
     },
 
-    //更新 
+    //更新
     update(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -517,7 +517,7 @@ export default {
             message: res.data.message
           })
         }
-        
+
       })
       this.dialogInGoods = false;
     },
@@ -562,5 +562,4 @@ export default {
 }
 </script>
 <style></style>
-  
-  
+
